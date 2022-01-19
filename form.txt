@@ -1,0 +1,31 @@
+<h2>Wypełnij formularz rejestracyjny</h2>
+<p><span class="error">* pole wymagalne</span> </p>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+    <!-- pole imie -->
+    Podaj imie: <input type="text" name="name" value="<?php echo $name;?>">
+    <span class="error">*<?php echo $nameErr;?></span>
+    <br><br>
+    <!-- pole e-mail -->
+    Podaj swoj e-mail: <input type="email" name="email" value="<?php echo $email;?>">
+    <span class="error">*<?php echo $emailErr;?></span>
+    <br><br>
+    <!-- pole strona www -->
+
+    Podaj adres strony: <input type="url" name="website" value="<?php echo $website;?>">
+    <span class="error">*<?php echo $websiteErr;?></span>
+    <br><br>
+
+    Wpisz komentarz: <textarea name="comment" rows="5" cols="40">
+        <?php echo $comment;?>
+    </textarea>
+    <br><br>
+
+    Wybierz plec:
+    <input type="radio" name="plec" <?php if(isset($plec) && $plec == "kobieta") echo "checked";?>
+    value="kobieta">KOBIETA
+    <input type="radio" name="plec" <?php if(isset($plec) && $plec == "mezczyzna") echo "checked";?>
+           value="mezczyzna">MEZCZYZNA
+    <span class="error">*<?php echo $plecErr;?></span>
+    <br><br>
+    <input type="submit" name="submit" value="Rejestruj">
+</form>
