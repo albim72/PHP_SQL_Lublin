@@ -1,0 +1,50 @@
+ if(empty($_POST["name"])){
+        $nameErr = "imie jest wymagalne!";
+    }else{
+        $name = test_input($_POST["name"]);
+        if(!preg_match("/^[a-zA-Z-']*$/",$name)){
+            $nameErr="dopuszczalne tylko litery oraz białe znaki.";
+        }
+    }
+
+    if(empty($_POST["email"])){
+        $emailErr="email wymagalny!";
+    }else {
+        $email = test_input($_POST["email"]);
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $emailErr = "zły format email";
+        }
+    }
+
+
+    if(empty($_POST["website"])){
+        $websiteErr="strona wymagalna!";
+    }else{
+        $website = test_input($_POST["website"]);
+       if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$website)) {
+            $websiteErr = "zły format url";
+        }
+    }
+
+    if(empty($_POST["comment"])){
+        $comment="";
+    }else{
+        $comment = test_input($_POST["comment"]);
+    }
+
+
+    if(empty($_POST["plec"])){
+        $plecErr="pole wymagalne!";
+    }else{
+        $plec = test_input($_POST["plec"]);
+    }
+}
+
+
+
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+    
